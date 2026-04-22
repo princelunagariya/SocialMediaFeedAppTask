@@ -14,6 +14,8 @@ struct CreatePostView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
 
+    @Binding var selectedTab: Int
+
     @StateObject private var viewModel = CreatePostViewModel()
     @EnvironmentObject private var locationManager: LocationManager
     @State private var photosPickerItem: PhotosPickerItem?
@@ -109,6 +111,7 @@ struct CreatePostView: View {
                 if saved {
                     viewModel.resetForm()
                     photosPickerItem = nil
+                    selectedTab = 0
                 }
             }
             .onAppear {
@@ -381,7 +384,7 @@ struct CreatePostView: View {
 }
 
 #Preview {
-    CreatePostView()
+    CreatePostView(selectedTab: .constant(1))
         .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         .environmentObject(LocationManager())
 }

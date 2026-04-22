@@ -19,7 +19,7 @@ struct ContentView: View {
                 }
                 .tag(0)
 
-            CreatePostView()
+            CreatePostView(selectedTab: $selectedTab)
                 .tabItem {
                     Label("New Post", systemImage: "plus.circle.fill")
                 }
